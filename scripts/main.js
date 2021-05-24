@@ -57,38 +57,19 @@ function printDaysHTML() {
 function printWeekHTML() {
   let HTML = '';
   for (let i = 1; i <= daysInMonth(); i++){
-    let dayNumber = new Date(currentDate().getFullYear(), currentDate().getMonth(), i).getDay();
-    let dayName = returnDayName(dayNumber);
+    let dayName = returnDayName(i);
     let div = `<div>${dayName}</div>`;
     HTML += div
     }
     document.querySelector('.week-wrapper').innerHTML = HTML;
 }
 
+//Creatink short version of day name "Sun", "Fri" etc.
+
 function returnDayName(dayNumber) {
-  switch (dayNumber) {
-    case 0:
-      return dayName = "Sun";
-      break;
-    case 1:
-      return dayName = "Mon";
-      break;
-    case 2:
-      return dayName = "Tue";
-      break;
-    case 3:
-      return dayName = "Wed";
-      break;
-    case 4:
-      return dayName = "Thu";
-      break; 
-    case 5:
-      return dayName = "Fri";
-      break;
-    case 6:
-      return dayName = "Sat";
-      break;
-  }
+  let date = new Date(currentDate().getFullYear(), currentDate().getMonth(), dayNumber);
+  let dayName = new Date(date).toLocaleString('en-us', {weekday:'short'});
+  return dayName;
 }
 
 //Printing all content DIV's/Cell's in HTML
@@ -98,8 +79,7 @@ function printContentHTML() {
   for (let i = 1; i <= 17; i++) {
     let cellHTML = '';
     for (let e = 1; e <= daysInMonth(); e++) {
-      let dayNumber = new Date(currentDate().getFullYear(), currentDate().getMonth(), e).getDay();
-      let dayName = returnDayName(dayNumber);
+      let dayName = returnDayName(e);
       let filteredDay = filterDays(e, dayName);
       let div = `<div class="cell ${filteredDay}" id="${i + 5}-${e}-${dayName}"></div>`;
       cellHTML += div;
@@ -108,6 +88,7 @@ function printContentHTML() {
   }
   document.querySelector('.output-wrapper').innerHTML = rowHTML;
 }
+
 
 //Filtering days. Adding premade style with class.
 
