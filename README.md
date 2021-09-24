@@ -1,3 +1,6 @@
+Important! <br>
+Learning process material. There may be incomplete parts of the code.<br>
+
 3.-Reservation-table: https://karolisptasinskas.github.io/3.-Reservation-table/
 
 .v1.01
